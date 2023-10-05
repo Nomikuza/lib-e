@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "259175914565",
+    "project_id": "dummy-kotlin-libe",
+    "storage_bucket": "dummy-kotlin-libe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259175914565:android:bfa5b07142338b98c2d72c",
+        "android_client_info": {
+          "package_name": "com.codingstuff.loginandsignup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADdhS6omFeEbMo19fNdo8bo9GI_CGSHGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
