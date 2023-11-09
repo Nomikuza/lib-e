@@ -6,16 +6,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.codingstuff.loginandsignup.Adapter.CourseRVModal;
 import com.codingstuff.loginandsignup.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class UploadGliderActivity extends AppCompatActivity {
 
@@ -28,11 +24,11 @@ public class UploadGliderActivity extends AppCompatActivity {
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buku);
-        kdBukuEdt = findViewById(R.id.KdbukuET);
-        nmBukuEdt = findViewById(R.id.NmbukuET);
-        nmPnlsEdt = findViewById(R.id.NmpnlsET);
-        nmPenerbitEdt = findViewById(R.id.PenerbitET);
-        jumlahEdt = findViewById(R.id.JumlahET);
+        kdBukuEdt = findViewById(R.id.kdPeminjamanPjm);
+        nmBukuEdt = findViewById(R.id.nmBukuEdt);
+        nmPnlsEdt = findViewById(R.id.nmPnlsEdt);
+        nmPenerbitEdt = findViewById(R.id.nmPenerbitEdt);
+        jumlahEdt = findViewById(R.id.tglPengembalianPjm);
         btnBuku = findViewById(R.id.addbookET);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Courses");

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Activity.UploadGliderActivity">
+    tools:context=".Activity.UploadPeminjamanActivity">
 
 
     <TextView
@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Tambah Peminjaman"
+        android:textColor="#000000"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,12 +26,33 @@
         android:text="Isilah kolom berikut"
         android:layout_marginTop="5dp" />
 
+    <ImageView
+        android:id="@+id/qrPjm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/qr" />
+
     <EditText
-        android:id="@+id/idEdtKdbuku"
+        android:id="@+id/kdPeminjamanPjm"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_dark_blue5_15"
+        android:hint="Kode Peminjaman"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/kdBukuPjm"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/round_back_dark_blue5_15"
         android:hint="Kode Buku"
@@ -41,63 +62,53 @@
         android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/idEdtNmsiswa"
+        android:id="@+id/nimPjm"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/round_back_dark_blue5_15"
-        android:hint="Nama Siswa"
+        android:hint="NIM"
         android:inputType="text"
         android:maxLines="1"
         android:paddingStart="20dp"
         android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/idEdttgl"
+        android:id="@+id/tglPeminjamanPjm"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:drawableEnd="@drawable/calendar"
+        android:paddingEnd="20dp"
         android:background="@drawable/round_back_dark_blue5_15"
-        android:hint="Tanggal"
+        android:hint="Tanggal Peminjaman"
         android:inputType="text"
         android:maxLines="1"
         android:paddingStart="20dp"
         android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/idEdtPenerbit"
-        android:layout_width="match_parent"
+        android:id="@+id/tglPengembalianPjm"
+        android:layout_width="352dp"
         android:layout_height="55dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:drawableEnd="@drawable/calendar"
+        android:paddingEnd="20dp"
         android:background="@drawable/round_back_dark_blue5_15"
-        android:hint="Penerbit"
-        android:inputType="text"
-        android:maxLines="1"
-        android:paddingStart="20dp"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/idEdtJumlah"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/round_back_dark_blue5_15"
-        android:hint="Jumlah"
-        android:inputType="text"
+        android:hint="Tanggal Pengembalian"
+        android:inputType="datetime"
         android:maxLines="1"
         android:paddingStart="20dp"
         android:textSize="16sp" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnPjm"
+        android:id="@+id/addpeminjamanPjm"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="20dp"
@@ -108,82 +119,17 @@
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />
 
-    <RelativeLayout
-        android:id="@+id/btnQr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
-
-        <View
-            android:layout_centerVertical="true"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#1A000000"
-            android:layout_toStartOf="@+id/orTxt"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"/>
-
-        <TextView
-            android:id="@+id/orTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Atau"
-            android:textColor="#80000000"
-            android:textSize="12sp" />
-
-        <View
-            android:layout_centerVertical="true"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#1A000000"
-            android:layout_toEndOf="@+id/orTxt"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"/>
-    </RelativeLayout>
-
-    <RelativeLayout
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addpeminjamanPjm2"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@drawable/round_back_dark_blue5_15"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_primary_15"
+        android:text="Tambah QR"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
 
 
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="20dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/qr" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="QR Scan"
-            android:textColor="#E6000000"
-            android:textStyle="bold"/>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="40dp">
-
-        <TextView
-            android:layout_marginStart="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lib - E"/>
-
-
-    </LinearLayout>
 </LinearLayout>

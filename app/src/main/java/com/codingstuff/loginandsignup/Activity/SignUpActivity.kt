@@ -34,7 +34,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (pass != confirmPass) {
                     Toast.makeText(this, "Password tidak cocok", Toast.LENGTH_SHORT).show()
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    Toast.makeText(this, "Cek format email", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Cek format email !", Toast.LENGTH_SHORT).show()
                 } else if (pass == confirmPass) {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass)
                         .addOnCompleteListener {

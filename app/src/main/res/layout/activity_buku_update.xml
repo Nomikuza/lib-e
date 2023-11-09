@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Activity.UpdateBukuActivity">
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Update Buku"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Isilah kolom berikut"
+        android:layout_marginTop="5dp" />
+
+    <ImageView
+        android:id="@+id/updateImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/image" />
+
+    <EditText
+        android:id="@+id/updateKdbukuET"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_dark_blue5_15"
+        android:hint="Kode Buku"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/updateNmbukuET"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_dark_blue5_15"
+        android:hint="Nama Buku"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/updateNmpnlsET"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_dark_blue5_15"
+        android:hint="Nama Penulis"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/updatePenerbitET"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_dark_blue5_15"
+        android:hint="Penerbit"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/updateJumlahET"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_dark_blue5_15"
+        android:hint="Jumlah"
+        android:inputType="number"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/updateHalamanET"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_dark_blue5_15"
+        android:hint="Halaman"
+        android:inputType="number"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/updateDescET"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_dark_blue5_15"
+        android:hint="Deskripsi"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingStart="20dp"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/updatebuttonET"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_back_primary_15"
+        android:text="Edit Buku"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
+
+
+</LinearLayout>

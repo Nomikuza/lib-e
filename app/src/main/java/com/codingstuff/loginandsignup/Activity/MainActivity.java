@@ -3,9 +3,6 @@ package com.codingstuff.loginandsignup.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,31 +19,59 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterTrendsList;
     private RecyclerView recyclerViewTrends;
-    private CardView tambahBuku;
+    private CardView tambahBuku, peminjaman, pengembalian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tambahBuku = findViewById(R.id.tambahBuku);
+        peminjaman = findViewById(R.id.peminjaman);
+        pengembalian = findViewById(R.id.pengembalian);
+
+
         initRecyclerView();
         BottomNavigation();
 
         tambahBuku.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,BukuActivity.class));
+                startActivity(new Intent(MainActivity.this, UploadBukuActivity.class));
             }
         });
+
+        peminjaman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, UploadPeminjamanActivity.class));
+            }
+        });
+
+        pengembalian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, QRScannerPeminjaman.class));
+            }
+        });
+
     }
 
 
     private void BottomNavigation() {
         LinearLayout profileBtn=findViewById(R.id.profileBtn);
+        LinearLayout categoryBtn=findViewById(R.id.addCategory);
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+
+            }
+        });
+        categoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, UploadCategoryActivity.class));
 
             }
         });

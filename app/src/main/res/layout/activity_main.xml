@@ -164,6 +164,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/peminjaman"
                         android:layout_width="100dp"
                         android:layout_height="120dp"
                         android:layout_margin="10dp"
@@ -206,6 +207,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/pengembalian"
                         android:layout_width="100dp"
                         android:layout_height="120dp"
                         android:layout_margin="10dp"
@@ -347,6 +349,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/addCategory"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"
@@ -365,7 +368,7 @@
                     android:id="@+id/textView132"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Wallet"
+                    android:text="Kategori"
                     android:textAlignment="center" />
             </LinearLayout>
 

@@ -42,7 +42,7 @@ class SignInActivity : AppCompatActivity() {
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Email atau Password salah", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -60,5 +60,11 @@ class SignInActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    fun login(s: String, s1: String) {
+       val  s = "admin"
+        val s1 = "123"
+
     }
 }

@@ -7,6 +7,35 @@ public class DataClass {
     private String nmPenerbit;
     private String jumlah;
     private String dataImage;
+    private String hal;
+    private String key;
+
+
+    public String getHal() {
+        return hal;
+    }
+
+    public void setHal(String hal) {
+        this.hal = hal;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    private String desc;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getKdBuku() {
         return kdBuku;
@@ -56,13 +85,17 @@ public class DataClass {
         this.dataImage = dataImage;
     }
 
-    public DataClass(String kdBuku, String nmBuku, String nmPnls, String nmPenerbit, String jumlah, String dataImage) {
+
+    public DataClass(String dataImage, String desc, String hal, String jumlah, String kdBuku, String nmBuku, String nmPenerbit, String nmPnls) {
         this.kdBuku = kdBuku;
         this.nmBuku = nmBuku;
         this.nmPnls = nmPnls;
         this.nmPenerbit = nmPenerbit;
         this.jumlah = jumlah;
         this.dataImage = dataImage;
+        this.hal = hal;
+
+        this.desc = desc;
     }
 
     public DataClass() {
