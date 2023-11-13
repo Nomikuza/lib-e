@@ -8,8 +8,10 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".Activity.MyApplication"
@@ -20,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginAndSignUp"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Activity.DashboardUserActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.PdfViewActivity"
             android:exported="false" />
@@ -115,6 +120,9 @@
             android:exported="true" />
         <activity
             android:name=".Activity.ShowBukuActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.PdfDetailActivity"
             android:exported="true" />
     </application>
 

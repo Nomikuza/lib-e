@@ -44,12 +44,12 @@ public class PdfViewActivity extends AppCompatActivity {
 
     private void loadBookDetails() {
         Log.d(TAG, "loadBookDetails: Get Pdf URL... ");
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
         ref.child(bookId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String pdfUrl = "" + snapshot.child("url").getValue();
+                        String pdfUrl = ""+snapshot.child("url").getValue();
                         Log.d(TAG, "onDataChange: PDF URL: " + pdfUrl);
 
                         loadBookFromUrl(pdfUrl);

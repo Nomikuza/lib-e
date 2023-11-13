@@ -19,14 +19,17 @@ public class FilterPdfAdmin extends Filter {
     @Override
     protected FilterResults performFiltering(CharSequence constraint) {
         FilterResults results = new FilterResults();
+        //  value should not be null/empty
+        if (constraint != null && constraint.length() > 0) {
 
-        if (results == null && constraint.length() > 0) {
+            //
             constraint = constraint.toString().toUpperCase();
             ArrayList<ModelPDF> filteredModels = new ArrayList<>();
 
             for (int i=0; i<filterList.size(); i++){
-
+                //  validate
                 if (filterList.get(i).getTitle().toUpperCase().contains(constraint)){
+                    //
                     filteredModels.add(filterList.get(i));
                 }
             }
@@ -39,7 +42,7 @@ public class FilterPdfAdmin extends Filter {
             results.values = filterList;
         }
 
-        return null;
+        return results;
     }
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
