@@ -280,6 +280,15 @@
             android:drawableTop="@drawable/download"
             android:text="Download"
             android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/favoriteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_primary"
+            android:drawableTop="@drawable/favoriteori"
+            android:text="Favorite"
+            android:layout_weight="1"/>
     </LinearLayout>
 
 

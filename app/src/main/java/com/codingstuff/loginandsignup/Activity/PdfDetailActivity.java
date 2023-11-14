@@ -18,7 +18,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.codingstuff.loginandsignup.R;
 import com.codingstuff.loginandsignup.databinding.ActivityPdfDetailBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +32,8 @@ public class PdfDetailActivity extends AppCompatActivity {
     private ActivityPdfDetailBinding binding;
     private static final String TAG_DOWNLOAD = "DOWNLOAD_TAG";
     String bookId, bookTitle, bookUrl;
+    boolean isInMyFavorite = false;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,9 @@ public class PdfDetailActivity extends AppCompatActivity {
         bookId = intent.getStringExtra("bookId");
 
         binding.downloadBookBtn.setVisibility(View.GONE);
-        
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        checkIsFavorite();
         loadBookDetails();
         MyApplication.incrementBookViewCount(bookId);
 
@@ -64,6 +70,21 @@ public class PdfDetailActivity extends AppCompatActivity {
                 else {
                     Log.d(TAG_DOWNLOAD, "onClick: Permission was not Granted, request permission...");
                     requestPermissionLauncher.launch(WRITE_EXTERNAL_STORAGE);
+                }
+            }
+        });
+
+        //
+        binding.favoriteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isInMyFavorite){
+                    //
+                    MyApplication.removeFromFavorite(PdfDetailActivity.this, bookId);
+                }
+                else {
+                    //
+                    MyApplication.addToFavorite(PdfDetailActivity.this, bookId);
                 }
             }
         });
@@ -99,6 +120,7 @@ public class PdfDetailActivity extends AppCompatActivity {
 //            return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
 //        }
 //    }
+
     private ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted){
@@ -136,7 +158,8 @@ public class PdfDetailActivity extends AppCompatActivity {
                                 ""+bookUrl,
                                 ""+bookTitle,
                                 binding.pdfView,
-                                binding.progressBar
+                                binding.progressBar,
+                                binding.pagesTv
                         );
                         MyApplication.loadPdfSize(
                                 ""+bookUrl,
@@ -150,6 +173,33 @@ public class PdfDetailActivity extends AppCompatActivity {
                         binding.downloadsTv.setText(downloadsCount.replace("null","N/A"));
                         binding.dateTv.setText(date);
 
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    private void checkIsFavorite(){
+        //
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(firebaseAuth.getUid()).child("Favorites").child(bookId)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        isInMyFavorite = snapshot.exists(); //
+                        if (isInMyFavorite){
+                            //
+                            binding.favoriteBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.favoritepress, 0, 0);
+                            binding.favoriteBtn.setText("Hapus Favorit");
+                        }
+                        else {
+                            //
+                            binding.favoriteBtn.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.favoriteori, 0, 0);
+                            binding.favoriteBtn.setText("Tambah Favorit");
+                        }
                     }
 
                     @Override

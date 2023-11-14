@@ -1,7 +1,9 @@
 package com.codingstuff.loginandsignup.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.codingstuff.loginandsignup.Domain.ModelCategory;
 import com.codingstuff.loginandsignup.databinding.ActivityDashboardUserBinding;
 import com.codingstuff.loginandsignup.fragment.BookUserFragment;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +39,16 @@ public class DashboardUserActivity extends AppCompatActivity {
 
         setupViewPagerAdapter(binding.viewPager);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth.signOut();
+                startActivity(new Intent(DashboardUserActivity.this, IntroActivity.class));
+                finish();
+            }
+        });
     }
 
     private void setupViewPagerAdapter(ViewPager viewPager){
