@@ -2,13 +2,13 @@ package com.codingstuff.loginandsignup.Domain;
 
 public class ModelPDF {
     String uid, id, title, description, categoryId, url;
-    long timestamp, viewsCount;
+    long timestamp, viewsCount, downloadsCount;
 
     public ModelPDF(){
 
     }
 
-    public ModelPDF(String uid, String id, String title, String description, String categoryId, String url, long timestamp, long viewsCount) {
+    public ModelPDF(String uid, String id, String title, String description, String categoryId, String url, long timestamp) {
         this.uid = uid;
         this.id = id;
         this.title = title;
@@ -16,7 +16,15 @@ public class ModelPDF {
         this.categoryId = categoryId;
         this.url = url;
         this.timestamp = timestamp;
-        this.viewsCount = viewsCount;
+
+    }
+
+    public long getDownloadsCount() {
+        return downloadsCount;
+    }
+
+    public void setDownloadsCount(long downloadsCount) {
+        this.downloadsCount = downloadsCount;
     }
 
     public String getUid() {

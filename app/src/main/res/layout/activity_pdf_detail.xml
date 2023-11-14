@@ -54,20 +54,23 @@
         android:textStyle="bold"
         android:transitionName="booktitleTN"
         app:layout_constraintStart_toEndOf="@+id/pdfRl"
-        app:layout_constraintTop_toTopOf="@+id/pdfRl" />
+        app:layout_constraintTop_toTopOf="@+id/container" />
 
     <!--Book title-->
     <TableLayout
-        android:layout_width="269dp"
-        android:layout_height="103dp"
+        android:id="@+id/tableLayout"
+        android:layout_width="244dp"
+        android:layout_height="140dp"
         android:layout_below="@id/titleTv"
-        android:layout_toEndOf="@id/pdfRl"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/pdfRl"
         app:layout_constraintBottom_toBottomOf="@+id/pdfRl"
         app:layout_constraintStart_toEndOf="@+id/pdfRl"
-        app:layout_constraintTop_toTopOf="@+id/pdfRl">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow>
+        <TableRow android:layout_marginTop="5dp">
+
 
             <TextView
                 android:id="@+id/categoryLabelTv"
@@ -75,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="Category" />
+                android:text="Kategori" />
 
             <TextView
                 android:id="@+id/categoryTv"
@@ -87,16 +90,16 @@
                 android:text="N/A" />
         </TableRow>
 
-<!--Date Row-->
-        <TableRow
-            android:layout_marginTop="5dp">
+        <!--Date Row-->
+        <TableRow android:layout_marginTop="5dp">
+
             <TextView
                 android:id="@+id/dateLabelTv"
                 style="@style/TextAppearance.MaterialComponents.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="Date" />
+                android:text="Tanggal" />
 
             <TextView
                 android:id="@+id/dateTv"
@@ -109,15 +112,15 @@
         </TableRow>
 
         <!--Date Row-->
-        <TableRow
-            android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="5dp">
+
             <TextView
                 android:id="@+id/sizeLabelTv"
                 style="@style/TextAppearance.MaterialComponents.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="Size" />
+                android:text="Ukuran" />
 
             <TextView
                 android:id="@+id/sizeTv"
@@ -130,15 +133,15 @@
         </TableRow>
 
         <!--Views Count Row-->
-        <TableRow
-            android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="5dp">
+
             <TextView
                 android:id="@+id/viewsLabelTv"
                 style="@style/TextAppearance.MaterialComponents.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="Views" />
+                android:text="Dilihat" />
 
             <TextView
                 android:id="@+id/viewsTv"
@@ -151,8 +154,8 @@
         </TableRow>
 
         <!--Date Row-->
-        <TableRow
-            android:layout_marginTop="5dp">
+        <TableRow android:layout_marginTop="5dp">
+
             <TextView
                 android:id="@+id/downloadsLabelTv"
                 style="@style/TextAppearance.MaterialComponents.Caption"
@@ -174,6 +177,28 @@
     </TableLayout>
 
     <TextView
+        android:id="@+id/pagesLabelTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:text="Halaman"
+        android:transitionName="penerbitTN"
+        app:layout_constraintStart_toEndOf="@+id/pdfRl"
+        app:layout_constraintTop_toBottomOf="@+id/container" />
+
+    <TextView
+        android:id="@+id/pagesTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:text="N/A"
+        android:transitionName="penerbitTN"
+        app:layout_constraintStart_toEndOf="@+id/pagesLabelTv"
+        app:layout_constraintTop_toBottomOf="@+id/container" />
+
+    <TextView
         android:id="@+id/details_desc"
         android:layout_width="0dp"
         android:layout_height="605dp"
@@ -183,10 +208,10 @@
         android:text="@string/lorem_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

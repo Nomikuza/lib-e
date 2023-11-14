@@ -207,7 +207,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/daftarPdf"
+                android:id="@+id/showUserBtn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="32dp"
@@ -230,7 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Daftar Pdf"
+                    android:text="Tampilan User"
                     android:textColor="@color/dark_blue"
                     android:textSize="20sp"
                     android:textStyle="bold"

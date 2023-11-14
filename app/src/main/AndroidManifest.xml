@@ -24,7 +24,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".Activity.DashboardUserActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Activity.PdfViewActivity"
             android:exported="false" />

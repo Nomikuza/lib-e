@@ -42,8 +42,8 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this, ShowCategoryActivity::class.java))
         }
 
-        binding.daftarPdf.setOnClickListener {
-            startActivity(Intent(this, PdfListAdminActivity::class.java))
+        binding.showUserBtn.setOnClickListener {
+            startActivity(Intent(this, DashboardUserActivity::class.java))
         }
 
     }
