@@ -46,5 +46,9 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this, DashboardUserActivity::class.java))
         }
 
+        binding.profileImage.setOnClickListener {
+            startActivity(Intent(this, ProfileUserActivity::class.java))
+        }
+
     }
 }

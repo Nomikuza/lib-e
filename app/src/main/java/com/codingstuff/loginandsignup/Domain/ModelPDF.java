@@ -3,12 +3,13 @@ package com.codingstuff.loginandsignup.Domain;
 public class ModelPDF {
     String uid, id, title, description, categoryId, url;
     long timestamp, viewsCount, downloadsCount;
+    boolean favorite;
 
     public ModelPDF(){
 
     }
 
-    public ModelPDF(String uid, String id, String title, String description, String categoryId, String url, long timestamp) {
+    public ModelPDF(String uid, String id, String title, String description, String categoryId, String url, long timestamp, long viewsCount, long downloadsCount, boolean favorite) {
         this.uid = uid;
         this.id = id;
         this.title = title;
@@ -16,7 +17,9 @@ public class ModelPDF {
         this.categoryId = categoryId;
         this.url = url;
         this.timestamp = timestamp;
-
+        this.viewsCount = viewsCount;
+        this.downloadsCount = downloadsCount;
+        this.favorite = favorite;
     }
 
     public long getDownloadsCount() {
@@ -89,5 +92,13 @@ public class ModelPDF {
 
     public void setViewsCount(long viewsCount) {
         this.viewsCount = viewsCount;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
 }

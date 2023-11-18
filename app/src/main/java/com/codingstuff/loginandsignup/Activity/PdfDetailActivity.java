@@ -18,6 +18,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.codingstuff.loginandsignup.Adapter.AdapterPdfFavorite;
+import com.codingstuff.loginandsignup.Domain.ModelPDF;
 import com.codingstuff.loginandsignup.R;
 import com.codingstuff.loginandsignup.databinding.ActivityPdfDetailBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class PdfDetailActivity extends AppCompatActivity {
     
     private ActivityPdfDetailBinding binding;
@@ -34,6 +38,7 @@ public class PdfDetailActivity extends AppCompatActivity {
     String bookId, bookTitle, bookUrl;
     boolean isInMyFavorite = false;
     private FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,8 @@ public class PdfDetailActivity extends AppCompatActivity {
         checkIsFavorite();
         loadBookDetails();
         MyApplication.incrementBookViewCount(bookId);
+
+
 
         binding.readBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +96,8 @@ public class PdfDetailActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     public static String[] storage_permissions = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
