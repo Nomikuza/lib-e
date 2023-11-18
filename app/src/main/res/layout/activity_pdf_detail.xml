@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-<androidx.constraintlayout.widget.ConstraintLayout
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.PdfDetailActivity">
+    tools:context=".Activity.BookDetailsActivity">
 
     <ImageView
-        android:transitionName="containerTN"
         android:id="@+id/container"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:background="@drawable/container_bg"
+        android:transitionName="containerTN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +26,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/book1"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+        app:layout_constraintStart_toStartOf="@id/container"
         app:layout_constraintTop_toTopOf="@+id/container">
 
         <com.github.barteksc.pdfviewer.PDFView
@@ -44,26 +40,25 @@
             android:layout_height="match_parent" />
     </RelativeLayout>
 
-
     <TextView
         android:id="@+id/titleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:text="Judul Buku"
         android:textStyle="bold"
         android:transitionName="booktitleTN"
         app:layout_constraintStart_toEndOf="@+id/pdfRl"
         app:layout_constraintTop_toTopOf="@+id/container" />
 
-    <!--Book title-->
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="244dp"
         android:layout_height="140dp"
         android:layout_below="@id/titleTv"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         android:layout_toEndOf="@id/pdfRl"
         app:layout_constraintBottom_toBottomOf="@+id/pdfRl"
         app:layout_constraintStart_toEndOf="@+id/pdfRl"
@@ -178,10 +173,10 @@
 
     <TextView
         android:id="@+id/pagesLabelTv"
+        style="@style/TextAppearance.MaterialComponents.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        style="@style/TextAppearance.MaterialComponents.Caption"
         android:text="Halaman"
         android:transitionName="penerbitTN"
         app:layout_constraintStart_toEndOf="@+id/pdfRl"
@@ -189,10 +184,10 @@
 
     <TextView
         android:id="@+id/pagesTv"
+        style="@style/TextAppearance.MaterialComponents.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        style="@style/TextAppearance.MaterialComponents.Caption"
         android:text="N/A"
         android:transitionName="penerbitTN"
         app:layout_constraintStart_toEndOf="@+id/pagesLabelTv"
@@ -200,18 +195,51 @@
 
     <TextView
         android:id="@+id/details_desc"
-        android:layout_width="0dp"
-        android:layout_height="605dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:lineSpacingExtra="8sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
         android:text="@string/lorem_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pdfRl" />
+
+    <LinearLayout
+        android:id="@+id/bookOptionsLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/readBookBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/design_default_color_primary"
+            android:drawableTop="@drawable/read"
+            android:text="Baca" />
+
+
+        <Button
+            android:id="@+id/downloadBookBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/design_default_color_primary"
+            android:drawableTop="@drawable/download"
+            android:text="Download" />
+
+        <Button
+            android:id="@+id/favoriteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/design_default_color_primary"
+            android:drawableTop="@drawable/favoriteori"
+            android:text="Favorite" />
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -223,7 +251,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="90dp"
             app:menu_colorNormal="@color/black"
             app:menu_colorPressed="@color/light_medium_gray"
             app:menu_fab_size="normal"
@@ -252,47 +280,4 @@
         </com.github.clans.fab.FloatingActionMenu>
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/bookOptionsLl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/details_desc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/readBookBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/design_default_color_primary"
-            android:drawableTop="@drawable/read"
-            android:text="Baca"
-            android:layout_weight="1"/>
-
-
-        <Button
-            android:id="@+id/downloadBookBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/design_default_color_primary"
-            android:drawableTop="@drawable/download"
-            android:text="Download"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/favoriteBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/design_default_color_primary"
-            android:drawableTop="@drawable/favoriteori"
-            android:text="Favorite"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
