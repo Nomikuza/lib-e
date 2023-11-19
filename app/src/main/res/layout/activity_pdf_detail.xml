@@ -1,214 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.BookDetailsActivity">
 
-    <ImageView
-        android:id="@+id/container"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:background="@drawable/container_bg"
-        android:transitionName="containerTN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RelativeLayout
-        android:id="@+id/pdfRl"
-        android:layout_width="100dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/book1"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@id/container"
-        app:layout_constraintTop_toTopOf="@+id/container">
-
-        <com.github.barteksc.pdfviewer.PDFView
-            android:id="@+id/pdfView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/titleTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Judul Buku"
-        android:textStyle="bold"
-        android:transitionName="booktitleTN"
-        app:layout_constraintStart_toEndOf="@+id/pdfRl"
-        app:layout_constraintTop_toTopOf="@+id/container" />
-
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="244dp"
-        android:layout_height="140dp"
-        android:layout_below="@id/titleTv"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:layout_toEndOf="@id/pdfRl"
-        app:layout_constraintBottom_toBottomOf="@+id/pdfRl"
-        app:layout_constraintStart_toEndOf="@+id/pdfRl"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow android:layout_marginTop="5dp">
-
-
-            <TextView
-                android:id="@+id/categoryLabelTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="Kategori" />
-
-            <TextView
-                android:id="@+id/categoryTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:text="N/A" />
-        </TableRow>
-
-        <!--Date Row-->
-        <TableRow android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/dateLabelTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="Tanggal" />
-
-            <TextView
-                android:id="@+id/dateTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:text="N/A" />
-        </TableRow>
-
-        <!--Date Row-->
-        <TableRow android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/sizeLabelTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="Ukuran" />
-
-            <TextView
-                android:id="@+id/sizeTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:text="N/A" />
-        </TableRow>
-
-        <!--Views Count Row-->
-        <TableRow android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/viewsLabelTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="Dilihat" />
-
-            <TextView
-                android:id="@+id/viewsTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:text="N/A" />
-        </TableRow>
-
-        <!--Date Row-->
-        <TableRow android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/downloadsLabelTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="Downloads" />
-
-            <TextView
-                android:id="@+id/downloadsTv"
-                style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:text="N/A" />
-        </TableRow>
-
-    </TableLayout>
-
-    <TextView
-        android:id="@+id/pagesLabelTv"
-        style="@style/TextAppearance.MaterialComponents.Caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Halaman"
-        android:transitionName="penerbitTN"
-        app:layout_constraintStart_toEndOf="@+id/pdfRl"
-        app:layout_constraintTop_toBottomOf="@+id/container" />
-
-    <TextView
-        android:id="@+id/pagesTv"
-        style="@style/TextAppearance.MaterialComponents.Caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:text="N/A"
-        android:transitionName="penerbitTN"
-        app:layout_constraintStart_toEndOf="@+id/pagesLabelTv"
-        app:layout_constraintTop_toBottomOf="@+id/container" />
-
-    <TextView
-        android:id="@+id/details_desc"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/lorem_text"
-        app:layout_constraintTop_toBottomOf="@+id/pdfRl" />
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:padding="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/container"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:background="@drawable/container_bg"
+                android:transitionName="containerTN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RelativeLayout
+                android:id="@+id/pdfRl"
+                android:layout_width="100dp"
+                android:layout_height="140dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/book1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="@id/container"
+                app:layout_constraintTop_toTopOf="@+id/container">
+
+                <com.github.barteksc.pdfviewer.PDFView
+                    android:id="@+id/pdfView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Judul Buku"
+                android:textStyle="bold"
+                android:transitionName="booktitleTN"
+                app:layout_constraintStart_toEndOf="@+id/pdfRl"
+                app:layout_constraintTop_toTopOf="@+id/container" />
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="244dp"
+                android:layout_height="140dp"
+                android:layout_below="@id/titleTv"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:layout_toEndOf="@id/pdfRl"
+                app:layout_constraintBottom_toBottomOf="@+id/pdfRl"
+                app:layout_constraintStart_toEndOf="@+id/pdfRl"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TableRow android:layout_marginTop="5dp">
+
+
+                    <TextView
+                        android:id="@+id/categoryLabelTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:text="Kategori" />
+
+                    <TextView
+                        android:id="@+id/categoryTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:text="N/A" />
+                </TableRow>
+
+                <!--Date Row-->
+                <TableRow android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/dateLabelTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:text="Tanggal" />
+
+                    <TextView
+                        android:id="@+id/dateTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:text="N/A" />
+                </TableRow>
+
+                <!--Date Row-->
+                <TableRow android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/sizeLabelTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:text="Ukuran" />
+
+                    <TextView
+                        android:id="@+id/sizeTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:text="N/A" />
+                </TableRow>
+
+                <!--Views Count Row-->
+                <TableRow android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/viewsLabelTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:text="Dilihat" />
+
+                    <TextView
+                        android:id="@+id/viewsTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:text="N/A" />
+                </TableRow>
+
+                <!--Date Row-->
+                <TableRow android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/downloadsLabelTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:text="Downloads" />
+
+                    <TextView
+                        android:id="@+id/downloadsTv"
+                        style="@style/TextAppearance.MaterialComponents.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:text="N/A" />
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/pagesLabelTv"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Halaman"
+                android:transitionName="penerbitTN"
+                app:layout_constraintStart_toEndOf="@+id/pdfRl"
+                app:layout_constraintTop_toBottomOf="@+id/container" />
+
+            <TextView
+                android:id="@+id/pagesTv"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="N/A"
+                android:transitionName="penerbitTN"
+                app:layout_constraintStart_toEndOf="@+id/pagesLabelTv"
+                app:layout_constraintTop_toBottomOf="@+id/container" />
+
+            <TextView
+                android:id="@+id/details_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="32dp"
+                android:text="@string/lorem_text"
+                app:layout_constraintTop_toBottomOf="@+id/pdfRl" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/light_medium_gray"
+                app:layout_constraintBottom_toTopOf="@+id/details_desc" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/details_desc">
+
+                <TextView
+                    android:id="@+id/commentsLabelTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:padding="5dp"
+                    android:text="Komentar"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <!--        Btn for show comment add dialog-->
+                <ImageButton
+                    android:id="@+id/addCommentBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/zxing_transparent"
+                    android:padding="5dp"
+                    android:src="@drawable/comment" />
+
+                <!--        -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentsRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/addCommentBtn"
+                    android:background="@color/gray04"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/row_comment" />
+
+
+                <com.github.clans.fab.FloatingActionMenu
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="90dp"
+                    app:menu_colorNormal="@color/black"
+                    app:menu_colorPressed="@color/light_medium_gray"
+                    app:menu_fab_size="normal"
+                    app:menu_icon="@drawable/list"
+                    app:menu_openDirection="up"
+                    app:menu_showShadow="true">
+
+                    <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/editButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/edit"
+                        app:fab_colorNormal="@color/green"
+                        app:fab_showShadow="true"
+                        app:fab_size="mini" />
+
+                    <com.github.clans.fab.FloatingActionButton
+                        android:id="@+id/deleteButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/delete"
+                        app:fab_colorNormal="@color/red"
+                        app:fab_showShadow="true"
+                        app:fab_size="mini" />
+
+                </com.github.clans.fab.FloatingActionMenu>
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
     <LinearLayout
         android:id="@+id/bookOptionsLl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -241,43 +336,7 @@
             android:text="Favorite" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <com.github.clans.fab.FloatingActionMenu
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="90dp"
-            app:menu_colorNormal="@color/black"
-            app:menu_colorPressed="@color/light_medium_gray"
-            app:menu_fab_size="normal"
-            app:menu_icon="@drawable/list"
-            app:menu_openDirection="up"
-            app:menu_showShadow="true">
+</RelativeLayout>
+<!--Bottom button-->
 
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/edit"
-                app:fab_colorNormal="@color/green"
-                app:fab_showShadow="true"
-                app:fab_size="mini" />
-
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/delete"
-                app:fab_colorNormal="@color/red"
-                app:fab_showShadow="true"
-                app:fab_size="mini" />
-
-        </com.github.clans.fab.FloatingActionMenu>
-
-    </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>

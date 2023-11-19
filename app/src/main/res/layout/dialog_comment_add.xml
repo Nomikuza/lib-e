@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/shape_rect02"
+    android:padding="20dp">
+
+<!--    go back button noneed-->
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:padding="5dp"
+        android:text="Tambah Komen"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/backdark"
+        android:background="@color/zxing_transparent"/>
+
+<!--    inputComment-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/commentTil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/backBtn"
+        android:hint="Komentar"
+        app:startIconDrawable="@drawable/comments">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/commentEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:inputType="textCapSentences|textMultiLine"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/commentTil"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_background"
+        android:text="Submit"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>

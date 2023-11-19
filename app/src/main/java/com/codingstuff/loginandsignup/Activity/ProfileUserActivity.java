@@ -56,46 +56,40 @@ public class ProfileUserActivity extends AppCompatActivity {
         });
     }
 
-
     private void loadFavoriteBooks() {
-        //
         pdfArrayList = new ArrayList<>();
 
-        //
-        //
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(firebaseAuth.getUid()).child("Favorites")
                 .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        //
-                        pdfArrayList.clear();
-                        for (DataSnapshot ds = snapshot.getChildren()){
-                            //
-                            String bookId = ""+ds.child("bookId").getValue();
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                pdfArrayList.clear();
+                for (DataSnapshot ds: snapshot.getChildren()){
+                    String bookId = "" + ds.child("bookId").getValue();
 
-                            //
-                            ModelPDF modelPDF = new ModelPDF();
-                            modelPDF.setId(bookId);
+                    //
+                    ModelPDF modelPDF = new ModelPDF();
+                    modelPDF.setId(bookId);
 
-                            //
-                            pdfArrayList.add(modelPDF);
-                        }
+                    //
+                    pdfArrayList.add(modelPDF);
 
-                        //
-                        binding.favoriteBookCountTv.setText(""+pdfArrayList.size());;   //
-                        //
-                        adapterPdfFavorite = new AdapterPdfFavorite(ProfileUserActivity.this, pdfArrayList);
-                        //
-                        binding.booksRv.setAdapter(adapterPdfFavorite);
+                }
+                //
+                binding.favoriteBookCountTv.setText("" + pdfArrayList.size());   //
+                //
+                adapterPdfFavorite = new AdapterPdfFavorite(ProfileUserActivity.this, pdfArrayList);
+                //
+                binding.booksRv.setAdapter(adapterPdfFavorite);
+            }
 
-                    }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
-                    }
-                });
     }
 
     private void loadUserInfo() {
