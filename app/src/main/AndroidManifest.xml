@@ -23,8 +23,11 @@
         android:theme="@style/Theme.LoginAndSignUp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activity.ProfileEditActivity"
+            android:name=".Activity.NewRegisterActivity"
             android:exported="false" />
+        <activity
+            android:name=".Activity.ProfileEditActivity"
+            android:exported="true" />
         <activity
             android:name=".Activity.ProfileUserActivity"
             android:exported="false" />
