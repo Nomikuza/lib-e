@@ -95,7 +95,7 @@ public class ProfileUserActivity extends AppCompatActivity {
     private void loadUserInfo() {
         Log.d(TAG, "loadUserInfo: Loading user info of user "+firebaseAuth.getUid());
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         reference.child(firebaseAuth.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override

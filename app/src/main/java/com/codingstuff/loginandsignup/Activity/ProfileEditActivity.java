@@ -191,7 +191,8 @@ public class ProfileEditActivity extends AppCompatActivity {
                 int which = item.getItemId();
                 if (which==0){
                     //
-                    pickImageCamera();
+//                    pickImageCamera();
+                    pickImageGallery();
                 } else if (which==1) {
                     //
                     pickImageGallery();
@@ -217,7 +218,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
     private void pickImageGallery() {
         //
-        Intent intent = new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         galleryActivityResultLauncher.launch(intent);
     }
@@ -266,7 +267,7 @@ public class ProfileEditActivity extends AppCompatActivity {
     private void loadUserInfo() {
         Log.d(TAG, "loadUserInfo: Loading user info of user "+firebaseAuth.getUid());
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         reference.child(firebaseAuth.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
