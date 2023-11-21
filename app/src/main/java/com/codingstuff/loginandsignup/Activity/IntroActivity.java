@@ -42,32 +42,40 @@ public class IntroActivity extends AppCompatActivity {
         //
         //
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser == null) {
+            //
+            //
+            startActivity(new Intent(IntroActivity.this, SignInActivity.class));
+            finish();
+        } else {
 
-        //
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(firebaseUser.getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange (DataSnapshot snapshot){
-                //
-                String userType = "" + snapshot.child("userType").getValue();
-                //
-                if (userType.equals("user")) {
-                    //
-                    startActivity(new Intent(IntroActivity.this, DashboardUserActivity.class));
-                    finish();
-                } else if (userType.equals ("admin")) {
-                    //
-                    startActivity(new Intent(IntroActivity.this, MainActivity.class));
-                    finish();
-                }
-            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+            //
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+            ref.child(firebaseUser.getUid())
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
 
-                    }
-        });
+                            //
+                            String userType = "" + snapshot.child("userType").getValue();
+                            //
+                            if (userType.equals("user")) {
+                                //
+                                startActivity(new Intent(IntroActivity.this, DashboardUserActivity.class));
+                                finish();
+                            } else if (userType.equals("admin")) {
+                                //
+                                startActivity(new Intent(IntroActivity.this, MainActivity.class));
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        }
     }
-
 }
