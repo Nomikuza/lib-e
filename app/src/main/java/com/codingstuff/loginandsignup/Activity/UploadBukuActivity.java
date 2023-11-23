@@ -283,7 +283,6 @@ public class UploadBukuActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-
                         Log.d(TAG, "onSuccess: PDF upload successfully");
                         Toast.makeText(UploadBukuActivity.this, "Upload berhasil", Toast.LENGTH_SHORT).show();
                     }
@@ -364,7 +363,7 @@ public class UploadBukuActivity extends AppCompatActivity {
                 while (!uriTask.isComplete());
                 Uri urlImage = uriTask.getResult();
                 imageURL = urlImage.toString();
-                uploadData();
+                //uploadData();
                 //pending
 
             }

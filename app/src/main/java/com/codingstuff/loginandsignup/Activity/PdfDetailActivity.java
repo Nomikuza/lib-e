@@ -27,9 +27,11 @@ import com.codingstuff.loginandsignup.R;
 import com.codingstuff.loginandsignup.databinding.ActivityPdfDetailBinding;
 import com.codingstuff.loginandsignup.databinding.DialogCommentAddBinding;
 import com.codingstuff.loginandsignup.recyclerview.AdapterComment;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +51,7 @@ public class PdfDetailActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private ArrayList<ModelComment> commentArrayList;
     private AdapterComment adapterComment;
+    private FloatingActionButton fab;
 
 
     @Override
@@ -56,6 +59,7 @@ public class PdfDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPdfDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+//        fab = this.findViewById(R.id.fab_location);
 
         Intent intent = getIntent();
         bookId = intent.getStringExtra("bookId");
@@ -68,6 +72,7 @@ public class PdfDetailActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        checkUser();
         checkIsFavorite();
         loadBookDetails();
         loadComments();
@@ -91,6 +96,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                 Log.d(TAG_DOWNLOAD, "onClick: Checking permission");
                 if (ContextCompat.checkSelfPermission(PdfDetailActivity.this, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                     Log.d(TAG_DOWNLOAD, "onClick: Permission already Granted, can download book");
+                    MyApplication.downloadBook(PdfDetailActivity.this, ""+bookId, ""+bookTitle, ""+bookUrl);
                 }
                 else {
                     Log.d(TAG_DOWNLOAD, "onClick: Permission was not Granted, request permission...");
@@ -121,6 +127,38 @@ public class PdfDetailActivity extends AppCompatActivity {
                 addCommentDialog();
             }
         });
+    }
+
+    private void checkUser() {
+        //
+        //
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            //
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+            ref.child(firebaseUser.getUid())
+                    .addListenerForSingleValueEvent(new ValueEventListener() {  //idk
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+
+                            //
+                            String userType = "" + snapshot.child("userType").getValue();
+                            //
+                            if (userType.equals("user")) {
+                                //
+                                binding.fabLocation.hideMenu(true);
+
+                            } else if (userType.equals("admin")) {
+                                //
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
     }
 
     private void loadComments() {

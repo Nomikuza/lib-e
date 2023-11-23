@@ -42,10 +42,9 @@ class SignInActivity : AppCompatActivity() {
             if (email.isNotEmpty() && pass.isNotEmpty()) {
 
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-                    checkUser()
+
                     if (it.isSuccessful) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+                        checkUser()
                     } else {
                         Toast.makeText(this, "Email atau Password salah", Toast.LENGTH_SHORT).show()
                     }
@@ -68,7 +67,7 @@ class SignInActivity : AppCompatActivity() {
                     val userType = snapshot.child("userType").getValue(String::class.java)
 
                     if (userType == "user") {
-                        val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                        val intent = Intent(this@SignInActivity, DashboardUserActivity::class.java)
                         startActivity(intent)
                     } else if (userType == "admin") {
                         val intent = Intent(this@SignInActivity, MainActivity::class.java)

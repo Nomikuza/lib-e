@@ -110,12 +110,14 @@ import java.util.ArrayList;
                                         @Override
                                         public void onSuccess(Void unused) {
                                             Toast.makeText(context, "Terhapus...", Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Toast.makeText(context, "Gagal menghapus dikarenakan "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
                                         }
                                     });
                         }
