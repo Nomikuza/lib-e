@@ -49,6 +49,12 @@ public class NewRegisterActivity extends AppCompatActivity {
                 validateData();
             }
         });
+        binding.loginPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NewRegisterActivity.this, SignInActivity.class));
+            }
+        });
     }
 
     private String name = "", email = "", password = "";

@@ -25,10 +25,10 @@ class SignInActivity : AppCompatActivity() {
 
 
         firebaseAuth = FirebaseAuth.getInstance()
-        binding.textView.setOnClickListener {
-            val intent = Intent(this, NewRegisterActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.registerPage.setOnClickListener {
+//            val intent = Intent(this, NewRegisterActivity::class.java)
+//            startActivity(intent)
+//        }
 
         binding.forgor.setOnClickListener {
             val intent = Intent(this, ResetPasswordActivity::class.java)
