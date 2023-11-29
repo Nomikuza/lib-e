@@ -28,7 +28,6 @@ import com.codingstuff.loginandsignup.Domain.DataClass;
 import com.codingstuff.loginandsignup.R;
 import com.codingstuff.loginandsignup.databinding.ActivityPdfAddBinding;
 import com.codingstuff.loginandsignup.recyclerview.BookAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -51,7 +50,7 @@ import java.util.List;
 
 public class UploadBukuActivity extends AppCompatActivity {
 
-    private EditText kdBukuEdt,nmBukuEdt,nmPnlsEdt,nmPenerbitEdt,jumlahEdt,halEdt,descEdt;
+    private EditText kdBukuEdt,nmBukuEdt,descEdt;
     private Button btnBuku, btnBack;
     private ImageButton pdfAttach;
     private TextView categoryTv;
@@ -76,10 +75,6 @@ public class UploadBukuActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         kdBukuEdt = findViewById(R.id.kdBukuEdt);
         nmBukuEdt = findViewById(R.id.nmBukuEdt);
-        nmPnlsEdt = findViewById(R.id.nmPnlsEdt);
-        nmPenerbitEdt = findViewById(R.id.nmPenerbitEdt);
-        jumlahEdt = findViewById(R.id.jumlahEdt);
-        halEdt = findViewById(R.id.HalamanET);
         descEdt = findViewById(R.id.DescET);
         uploadImage = findViewById(R.id.uploadImage);
         btnBuku = findViewById(R.id.addbookET);
@@ -196,32 +191,18 @@ public class UploadBukuActivity extends AppCompatActivity {
     private void validateData(){
         String kdbuku = kdBukuEdt.getText().toString();
         String nmbuku = nmBukuEdt.getText().toString();
-        String nmpnls = nmPnlsEdt.getText().toString();
-        String nmpnrbt = nmPenerbitEdt.getText().toString();
-        String jmlh = jumlahEdt.getText().toString();
-        String hal = halEdt.getText().toString();
         String desc = descEdt.getText().toString();
         title = binding.nmBukuEdt.getText().toString().trim();
         description = binding.DescET.getText().toString().trim();
         category = binding.categoryTv.getText().toString().trim();
 
         
-        if (TextUtils.isEmpty(kdbuku)) {
+        if (TextUtils.isEmpty(nmbuku)) {
             Toast.makeText(UploadBukuActivity.this, "Tolong klik gambar untuk menambahkan foto buku! ", Toast.LENGTH_SHORT).show();
-        } else if(TextUtils.isEmpty(nmbuku)) {
-            Toast.makeText(UploadBukuActivity.this, "Ketik nama buku ", Toast.LENGTH_SHORT).show();
-        } else if(TextUtils.isEmpty(nmpnls)) {
-            Toast.makeText(UploadBukuActivity.this, "Ketik nama buku ", Toast.LENGTH_SHORT).show();
-        } else if(TextUtils.isEmpty(nmpnrbt)) {
-            Toast.makeText(UploadBukuActivity.this, "Ketik nama buku ", Toast.LENGTH_SHORT).show();
-        } else if(TextUtils.isEmpty(jmlh)) {
-            Toast.makeText(UploadBukuActivity.this, "Ketik nama buku ", Toast.LENGTH_SHORT).show();
-        } else if(TextUtils.isEmpty(hal)) {
-            Toast.makeText(UploadBukuActivity.this, "Ketik nama buku ", Toast.LENGTH_SHORT).show();
         } else if(TextUtils.isEmpty(desc)) {
-            Toast.makeText(UploadBukuActivity.this, "Ketik nama buku ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UploadBukuActivity.this, "Ketik deskripsi buku ", Toast.LENGTH_SHORT).show();
         } else if(TextUtils.isEmpty(selectedCategoryTitle)) {
-            Toast.makeText(UploadBukuActivity.this, "Ketik nama buku ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UploadBukuActivity.this, "Pilih kategori buku ", Toast.LENGTH_SHORT).show();
         } else if (pdfUri == null) {
             Toast.makeText(UploadBukuActivity.this, "Tolong klik attach pdf untuk menambahkan pdf! ", Toast.LENGTH_SHORT).show();
         } else {
@@ -375,34 +356,34 @@ public class UploadBukuActivity extends AppCompatActivity {
             }
         });
     }
-    public void uploadData() {
-
-        String kdbuku = kdBukuEdt.getText().toString();
-        String nmbuku = nmBukuEdt.getText().toString();
-        String nmpnls = nmPnlsEdt.getText().toString();
-        String nmpnrbt = nmPenerbitEdt.getText().toString();
-        String jmlh = jumlahEdt.getText().toString();
-        String hal = halEdt.getText().toString();
-        String desc = descEdt.getText().toString();
-
-        //sesuai urutan DataClass
-        DataClass dataClass = new DataClass(imageURL,desc,hal,jmlh,kdbuku,nmbuku,nmpnrbt,nmpnls);
-        //String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-
-        FirebaseDatabase.getInstance().getReference("Android Tutorials").child(kdbuku)
-                .setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(UploadBukuActivity.this, "Tersimpan", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(UploadBukuActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
+//    public void uploadData() {
+//
+//        String kdbuku = kdBukuEdt.getText().toString();
+//        String nmbuku = nmBukuEdt.getText().toString();
+////        String nmpnls = nmPnlsEdt.getText().toString();
+////        String nmpnrbt = nmPenerbitEdt.getText().toString();
+////        String jmlh = jumlahEdt.getText().toString();
+////        String hal = halEdt.getText().toString();
+//        String desc = descEdt.getText().toString();
+//
+//        //sesuai urutan DataClass
+////        DataClass dataClass = new DataClass(imageURL,desc,hal,jmlh,kdbuku,nmbuku,nmpnrbt,nmpnls);
+//        //String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+//
+//        FirebaseDatabase.getInstance().getReference("Android Tutorials").child(kdbuku)
+//                .setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()){
+//                            Toast.makeText(UploadBukuActivity.this, "Tersimpan", Toast.LENGTH_SHORT).show();
+//                            finish();
+//                        }
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(UploadBukuActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
 }
