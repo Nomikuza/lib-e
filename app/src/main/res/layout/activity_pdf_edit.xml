@@ -42,14 +42,14 @@
                 android:src="@drawable/image" />
 
             <EditText
-                android:id="@+id/kdBukuEdt"
+                android:id="@+id/idBukuEdt"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/round_back_dark_blue5_15"
-                android:hint="Kode Buku"
+                android:hint="ID Buku"
                 android:inputType="text"
                 android:maxLines="1"
                 android:paddingStart="20dp"
@@ -86,62 +86,6 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 />
-
-            <EditText
-                android:id="@+id/nmPnlsEdt"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/round_back_dark_blue5_15"
-                android:hint="Nama Penulis"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingStart="20dp"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/nmPenerbitEdt"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/round_back_dark_blue5_15"
-                android:hint="Penerbit"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingStart="20dp"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/jumlahEdt"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/round_back_dark_blue5_15"
-                android:hint="Jumlah"
-                android:inputType="number"
-                android:maxLines="1"
-                android:paddingStart="20dp"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/HalamanET"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/round_back_dark_blue5_15"
-                android:hint="Halaman"
-                android:inputType="number"
-                android:maxLines="1"
-                android:paddingStart="20dp"
-                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/DescET"
