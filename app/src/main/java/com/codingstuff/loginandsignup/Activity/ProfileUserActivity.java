@@ -118,7 +118,7 @@ public class ProfileUserActivity extends AppCompatActivity {
                         binding.accountTypeTv.setText(userType);
 
                         //
-                        Glide.with(ProfileUserActivity.this)
+                        Glide.with(getApplicationContext())
                                 .load(profileImage)
                                 .placeholder(R.drawable.profile)
                                 .into(binding.profileTv);
