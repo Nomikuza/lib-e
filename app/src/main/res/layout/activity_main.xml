@@ -382,7 +382,7 @@
                 android:visibility="invisible">
 
                 <ImageView
-                    android:id="@+id/imageView113"
+                    android:id="@+id/imageView1132"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
@@ -391,7 +391,7 @@
                     app:srcCompat="@drawable/bottom_btn1" />
 
                 <TextView
-                    android:id="@+id/textView133"
+                    android:id="@+id/textView1332"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Home"

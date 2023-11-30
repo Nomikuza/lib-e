@@ -52,7 +52,7 @@
             android:background="@color/zxing_transparent"
             android:padding="5dp"
             android:src="@drawable/favoritepress"
-            android:tint="@color/black"/>
+            app:tint="@color/black"/>
 
         <TextView
             android:id="@+id/descriptionTv"

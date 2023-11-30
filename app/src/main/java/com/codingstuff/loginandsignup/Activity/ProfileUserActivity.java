@@ -1,6 +1,8 @@
 
 package com.codingstuff.loginandsignup.Activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -118,10 +120,15 @@ public class ProfileUserActivity extends AppCompatActivity {
                         binding.accountTypeTv.setText(userType);
 
                         //
-                        Glide.with(getApplicationContext())
-                                .load(profileImage)
-                                .placeholder(R.drawable.profile)
-                                .into(binding.profileTv);
+                        final Context context = getApplication().getApplicationContext();
+
+                        if (isValidContextForGlide(context)){
+                            // Load image via Glide lib using context
+                            Glide.with(context)
+                                    .load(profileImage)
+                                    .placeholder(R.drawable.profile)
+                                    .into(binding.profileTv);
+                        }
                     }
 
                     @Override
@@ -129,5 +136,18 @@ public class ProfileUserActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    public static boolean isValidContextForGlide(final Context context) {
+        if (context == null) {
+            return false;
+        }
+        if (context instanceof Activity) {
+            final Activity activity = (Activity) context;
+            if (activity.isDestroyed() || activity.isFinishing()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

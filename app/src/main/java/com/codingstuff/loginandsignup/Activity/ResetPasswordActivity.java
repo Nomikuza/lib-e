@@ -31,6 +31,12 @@ public class ResetPasswordActivity extends AppCompatActivity {
         binding.btnResetET.setOnClickListener(view -> {
             forgotPassword();
         });
+
+        binding.textRest.setOnClickListener(view -> {
+            startActivity(new Intent(ResetPasswordActivity.this, SignInActivity.class));
+            finish();
+        });
+
     }
     private Boolean validateEmail() {
         String val = binding.email.getText().toString();

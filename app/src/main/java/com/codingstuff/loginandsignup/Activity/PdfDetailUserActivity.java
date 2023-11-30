@@ -24,10 +24,9 @@ import androidx.core.content.ContextCompat;
 
 import com.codingstuff.loginandsignup.Domain.ModelComment;
 import com.codingstuff.loginandsignup.R;
-import com.codingstuff.loginandsignup.databinding.ActivityPdfDetailBinding;
+import com.codingstuff.loginandsignup.databinding.ActivityPdfDetailuserBinding;
 import com.codingstuff.loginandsignup.databinding.DialogCommentAddBinding;
 import com.codingstuff.loginandsignup.recyclerview.AdapterComment;
-import com.github.clans.fab.FloatingActionButton;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,31 +40,33 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PdfDetailActivity extends AppCompatActivity {
+public class PdfDetailUserActivity extends AppCompatActivity {
     
-    private ActivityPdfDetailBinding binding;
+    private ActivityPdfDetailuserBinding binding;
     private static final String TAG_DOWNLOAD = "DOWNLOAD_TAG";
     String bookId, bookTitle, bookUrl;
     boolean isInMyFavorite = false;
+    String isInMyPermission = "";
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private ArrayList<ModelComment> commentArrayList;
     private AdapterComment adapterComment;
-    private FloatingActionButton fab;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityPdfDetailBinding.inflate(getLayoutInflater());
+        binding = ActivityPdfDetailuserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        fab = this.findViewById(R.id.fab_location);
 
         Intent intent = getIntent();
         bookId = intent.getStringExtra("bookId");
 
         binding.downloadBookBtn.setVisibility(View.GONE);
+        binding.readBookBtn.setVisibility(View.GONE);
         binding.permissionBtn.setVisibility(View.GONE);
+        binding.fabLocation.hideMenu(true);
 
         //
         progressDialog = new ProgressDialog(this);
@@ -75,18 +76,25 @@ public class PdfDetailActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
 //        checkUser();
+
+        checkPermission();
         checkIsFavorite();
         loadBookDetails();
         loadComments();
         //
         MyApplication.incrementBookViewCount(bookId);
 
-
+        binding.permissionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyApplication.askPermission(PdfDetailUserActivity.this, bookId);
+            }
+        });
 
         binding.readBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(PdfDetailActivity.this, PdfViewActivity.class);
+                Intent intent1 = new Intent(PdfDetailUserActivity.this, PdfViewActivity.class);
                 intent1.putExtra("bookId", bookId);
                 startActivity(intent1);
             }
@@ -96,9 +104,9 @@ public class PdfDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 permissions();
                 Log.d(TAG_DOWNLOAD, "onClick: Checking permission");
-                if (ContextCompat.checkSelfPermission(PdfDetailActivity.this, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                if (ContextCompat.checkSelfPermission(PdfDetailUserActivity.this, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                     Log.d(TAG_DOWNLOAD, "onClick: Permission already Granted, can download book");
-                    MyApplication.downloadBook(PdfDetailActivity.this, ""+bookId, ""+bookTitle, ""+bookUrl);
+                    MyApplication.downloadBook(PdfDetailUserActivity.this, ""+bookId, ""+bookTitle, ""+bookUrl);
                 }
                 else {
                     Log.d(TAG_DOWNLOAD, "onClick: Permission was not Granted, request permission...");
@@ -113,11 +121,11 @@ public class PdfDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isInMyFavorite){
                     //
-                    MyApplication.removeFromFavorite(PdfDetailActivity.this, bookId);
+                    MyApplication.removeFromFavorite(PdfDetailUserActivity.this, bookId);
                 }
                 else {
                     //
-                    MyApplication.addToFavorite(PdfDetailActivity.this, bookId);
+                    MyApplication.addToFavorite(PdfDetailUserActivity.this, bookId);
                 }
             }
         });
@@ -131,9 +139,74 @@ public class PdfDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void checkPermission() {
+    private void askPermission1() {
+        String timestamp = ""+System.currentTimeMillis();
+        String uid = firebaseAuth.getUid();
 
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("uid", ""+uid);
+        hashMap.put("id", ""+timestamp);
+        hashMap.put("bookId", ""+bookId);
+//        hashMap.put("title", ""+nmbuku);
+//        hashMap.put("description", ""+desc);
+//        hashMap.put("categoryId", ""+selectedCategoryId);
+        hashMap.put("permission", ""+"false");
+        hashMap.put("timestamp", ""+timestamp);
+//        hashMap.put("viewsCount", +0);
+//        hashMap.put("downloadsCount", +0);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
+        ref.child(bookId).child("Permissions").child(timestamp)
+                .setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("CHECK_PERMISSION", "onSuccess: Ask permission sent successfully");
+                        Toast.makeText(PdfDetailUserActivity.this, "Upload berhasil", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("CHECK_PERMISSION", "onFailure: Failed to upload permission to db due to: " +e.getMessage());
+                        Toast.makeText(PdfDetailUserActivity.this, "PDF gagal diupload dikarenakan "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
+
+    private void checkPermission() {
+        //
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Permissions");
+        reference.child(firebaseAuth.getUid()).child(bookId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        isInMyPermission = String.valueOf(snapshot.child("permission").getValue());
+                        Toast.makeText(PdfDetailUserActivity.this, ""+isInMyPermission, Toast.LENGTH_SHORT).show();
+                        if (isInMyPermission.equals("true")){
+                            //
+                            binding.permissionBtn.setVisibility(View.GONE);
+                            binding.downloadBookBtn.setVisibility(View.VISIBLE);
+                            binding.readBookBtn.setVisibility(View.VISIBLE);
+                        }
+                        else if (isInMyPermission.equals("false")){
+                            //
+                            Toast.makeText(PdfDetailUserActivity.this, "Peminjaman masih pending", Toast.LENGTH_SHORT).show();
+                            binding.permissionBtn.setVisibility(View.GONE);
+                        }
+                        else if (isInMyPermission.equals("null")){
+                            binding.permissionBtn.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
 
     private void checkUser() {
         //
@@ -189,7 +262,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                             commentArrayList.add(model);
                         }
                         //
-                        adapterComment = new AdapterComment(PdfDetailActivity.this, commentArrayList);
+                        adapterComment = new AdapterComment(PdfDetailUserActivity.this, commentArrayList);
                         //
                         binding.commentsRv.setAdapter(adapterComment);
                     }
@@ -231,7 +304,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                 comment = commentAddBinding.commentEt.getText().toString().trim();
                 //
                 if (TextUtils.isEmpty(comment)){
-                    Toast.makeText(PdfDetailActivity.this, "Ketik komen disini...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PdfDetailUserActivity.this, "Ketik komen disini...", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     alertDialog.dismiss();
@@ -265,7 +338,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(PdfDetailActivity.this, "Komentar telah ditambahkan...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PdfDetailUserActivity.this, "Komentar telah ditambahkan...", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 })
@@ -274,7 +347,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         //
                         progressDialog.dismiss();
-                        Toast.makeText(PdfDetailActivity.this, "Komentar gagal ditambahkan dikarenakan "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PdfDetailUserActivity.this, "Komentar gagal ditambahkan dikarenakan "+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -336,7 +409,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                         bookUrl = ""+snapshot.child("url").getValue();
                         String timestamp = ""+snapshot.child("timestamp").getValue();
 
-                        binding.downloadBookBtn.setVisibility(View.VISIBLE);
+//                        binding.downloadBookBtn.setVisibility(View.VISIBLE);
 
                         String date = MyApplication.formatTimestamp(Long.parseLong(timestamp));
 

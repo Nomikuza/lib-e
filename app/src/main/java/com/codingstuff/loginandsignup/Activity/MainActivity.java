@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +19,7 @@ import com.codingstuff.loginandsignup.Adapter.TrendsAdapter;
 import com.codingstuff.loginandsignup.Domain.TrendSDomain;
 import com.codingstuff.loginandsignup.R;
 import com.codingstuff.loginandsignup.Transforms.CircleTransform;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private CardView tambahBuku, peminjaman, pengembalian;
     private TextView helloName;
     private ImageView profilePic;
-    private ConstraintLayout switchView;
+    private FloatingActionButton switchView;
     private FirebaseAuth auth;
     private Uri uriImage;
     private String TAG = "TAGMAIN";

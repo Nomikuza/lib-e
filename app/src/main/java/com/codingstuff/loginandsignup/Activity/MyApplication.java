@@ -69,7 +69,7 @@ public class MyApplication extends Application {
                         Log.d(TAG, "onSuccess: Deleted from storage");
 
                         Log.d(TAG, "onSuccess: Now deleting info from db");
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Books");
                         reference.child(bookId)
                                 .removeValue()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -405,6 +405,38 @@ public class MyApplication extends Application {
                 });
     }
 
+    public static void askPermission(Context context, String bookId){
+        //
+        //
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        long timestamp = System.currentTimeMillis();
+
+
+        //
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("bookId", ""+bookId);
+        hashMap.put("timestamp", ""+timestamp);
+        hashMap.put("permission", false);
+
+
+        //
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Permissions");
+        ref.child(firebaseAuth.getUid()).child(bookId)
+                .setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, "Meminta izin kepada admin...", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Gagal menambahkan izin kepada admin dikarenakan "+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     public static void removeFromFavorite(Context context, String bookId){
         //
         //
@@ -418,7 +450,7 @@ public class MyApplication extends Application {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(context, "Menambahkan ke daftar favorit...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Menghapus dari daftar favorit...", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

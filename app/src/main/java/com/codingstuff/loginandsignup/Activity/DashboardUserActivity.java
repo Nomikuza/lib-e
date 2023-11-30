@@ -102,7 +102,7 @@ public class DashboardUserActivity extends AppCompatActivity {
                 //
                 for (DataSnapshot ds: snapshot.getChildren()){
                     //
-                    ModelCategory model = ds.getValue(ModelCategory.class);
+                        ModelCategory model = ds.getValue(ModelCategory.class);
                     //
                     categoryArrayList.add(model);
                     //

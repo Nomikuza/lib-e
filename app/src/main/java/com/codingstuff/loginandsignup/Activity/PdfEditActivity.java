@@ -34,7 +34,7 @@ public class PdfEditActivity extends AppCompatActivity {
     private String bookId;
     private ProgressDialog progressDialog;
     private ArrayList <String> categoryTitleArrayList, categoryIdArrayList;
-    private EditText kdBukuEdt,nmBukuEdt,descEdt;
+    private EditText nmBukuEdt,descEdt;
     private static final String TAG = "BOOK_EDIT_TAG";
     private Button btnBuku;
     private TextView categoryTv;
@@ -44,7 +44,6 @@ public class PdfEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPdfEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        kdBukuEdt = findViewById(R.id.kdBukuEdt);
         nmBukuEdt = findViewById(R.id.nmBukuEdt);
         descEdt = findViewById(R.id.DescET);
         btnBuku = findViewById(R.id.addbookET);
@@ -56,9 +55,9 @@ public class PdfEditActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Tolong tunggu");
         progressDialog.setCanceledOnTouchOutside(false);
-        
-        loadCategories();
         loadBookInfo();
+        loadCategories();
+
 
         binding.categoryTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,15 +69,13 @@ public class PdfEditActivity extends AppCompatActivity {
         binding.addbookET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                validateData();
-                updatePdf();
+                validateData();
             }
         });
     }
 
     private String title= "", description= "", category= "";
     private void validateData() {
-        String kdbuku = kdBukuEdt.getText().toString();
         String nmbuku = nmBukuEdt.getText().toString();
         String desc = descEdt.getText().toString();
         title = binding.nmBukuEdt.getText().toString().trim();
@@ -86,9 +83,7 @@ public class PdfEditActivity extends AppCompatActivity {
         category = binding.categoryTv.getText().toString().trim();
 
 
-        if (TextUtils.isEmpty(kdbuku)) {
-            Toast.makeText(PdfEditActivity.this, "Tolong klik gambar untuk menambahkan foto buku! ", Toast.LENGTH_SHORT).show();
-        } else if(TextUtils.isEmpty(nmbuku)) {
+        if(TextUtils.isEmpty(nmbuku)) {
             Toast.makeText(PdfEditActivity.this, "Ketik nama buku ", Toast.LENGTH_SHORT).show();
         } else if(TextUtils.isEmpty(desc)) {
             Toast.makeText(PdfEditActivity.this, "Ketik deskripsi buku ", Toast.LENGTH_SHORT).show();

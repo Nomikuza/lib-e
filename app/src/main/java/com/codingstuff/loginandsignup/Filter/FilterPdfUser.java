@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class FilterPdfUser extends Filter {
     ArrayList<ModelPDF> filterList;
-
     AdapterPdfUser adapterPdfUser;
 
     public FilterPdfUser(ArrayList<ModelPDF> filterList, AdapterPdfUser adapterPdfUser) {

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class FilterCategory extends Filter {
     ArrayList<ModelCategory> filterList;
-
+    //
     AdapterCategory adapterCategory;
 
     public FilterCategory(ArrayList<ModelCategory> filterList, AdapterCategory adapterCategory) {

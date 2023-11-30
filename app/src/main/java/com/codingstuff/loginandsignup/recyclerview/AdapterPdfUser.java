@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codingstuff.loginandsignup.Activity.MyApplication;
-import com.codingstuff.loginandsignup.Activity.PdfDetailActivity;
+import com.codingstuff.loginandsignup.Activity.PdfDetailUserActivity;
 import com.codingstuff.loginandsignup.Domain.ModelPDF;
 import com.codingstuff.loginandsignup.Filter.FilterPdfUser;
 import com.codingstuff.loginandsignup.databinding.ItemBookUserBinding;
@@ -61,7 +61,7 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.HolderPd
 
         //
         holder.titleTv.setText(title);
-        holder.descriptionTv.setText(description);
+//        holder.descriptionTv.setText(description);
         holder.dateTv.setText(date);
 
         MyApplication.loadCategory(
@@ -84,7 +84,7 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.HolderPd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, PdfDetailActivity.class);
+                Intent intent = new Intent(context, PdfDetailUserActivity.class);
                 intent.putExtra("bookId", bookId);
                 context.startActivity(intent);
             }
@@ -109,7 +109,7 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.HolderPd
 
         PDFView pdfView;
         ProgressBar progressBar;
-        TextView titleTv, descriptionTv, categoryTv, sizeTv, dateTv;
+        TextView titleTv, categoryTv, sizeTv, dateTv;
         ImageView dataImage, imgFav, moreBtn;
         RatingBar ratingBar;
 
@@ -118,11 +118,11 @@ public class AdapterPdfUser extends RecyclerView.Adapter<AdapterPdfUser.HolderPd
             pdfView = binding.pdfView;
             progressBar = binding.progressBar;
             titleTv = binding.itemBookTitle;
-            descriptionTv = binding.itemBookStatus;
+//            descriptionTv = binding.itemBookStatus;
             moreBtn = binding.container0;
             categoryTv = binding.itemPjmCategory;
             dateTv = binding.itemPjmTglPengembalian;
-            sizeTv = binding.itemBookSize;
+            sizeTv = binding.itemBookStatus;
         }
     }
 }

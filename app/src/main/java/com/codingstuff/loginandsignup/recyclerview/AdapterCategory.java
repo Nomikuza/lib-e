@@ -84,7 +84,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PdfListAdminActivity.class);
-                intent.putExtra("categoryID", id);
+                intent.putExtra("categoryId", id);
                 intent.putExtra("categoryTitle", category);
                 context.startActivity(intent);
             }

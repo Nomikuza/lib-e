@@ -1,5 +1,6 @@
 package com.codingstuff.loginandsignup.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
@@ -40,6 +40,7 @@ public class TrendsAdapter extends RecyclerView.Adapter<TrendsAdapter.Viewholder
         holder.title.setText(items.get(position).getTitle());
         holder.subtitle.setText(items.get(position).getSubtitle());
 
+
         int drawableResourceId = holder.itemView.getResources().getIdentifier(items.get(position).getPicAdress(),"drawable", holder.itemView.getContext().getPackageName());
         Glide.with(holder.itemView.getContext())
                 .load(drawableResourceId)
@@ -47,6 +48,18 @@ public class TrendsAdapter extends RecyclerView.Adapter<TrendsAdapter.Viewholder
                 .into(holder.pic);
     }
 
+    public static boolean isValidContextForGlide(final Context context) {
+        if (context == null) {
+            return false;
+        }
+        if (context instanceof Activity) {
+            final Activity activity = (Activity) context;
+            if (activity.isDestroyed() || activity.isFinishing()) {
+                return false;
+            }
+        }
+        return true;
+    }
     @Override
     public int getItemCount() {
         return items.size();

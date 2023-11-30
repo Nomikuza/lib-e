@@ -42,7 +42,7 @@
             android:exported="false" />
         <activity
             android:name=".Activity.PdfListAdminActivity"
-            android:exported="false" />
+            android:exported="true" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -108,6 +108,9 @@
             android:exported="true" />
         <activity
             android:name=".Activity.UpdatePengembalianActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.PdfDetailUserActivity"
             android:exported="true" />
         <activity
             android:name=".Activity.ResetPasswordActivity"

@@ -37,14 +37,14 @@ public class PdfListAdminActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PdfListAdminActivity.this,RecyclerView.VERTICAL,false);
-        binding.rvBook.setLayoutManager(layoutManager);
+        binding.bookRv.setLayoutManager(layoutManager);
         Intent intent = getIntent();
         categoryId = intent.getStringExtra("categoryId");
         categoryTitle = intent.getStringExtra("categoryTitle");
 
         binding.subTitleTv.setText(categoryTitle);
 
-        loadPdfList();
+            loadPdfList();
 
         binding.search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -74,20 +74,22 @@ public class PdfListAdminActivity extends AppCompatActivity {
         pdfArrayList = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
-        ref.orderByChild("category").equalTo(categoryId)
+        ref.orderByChild("categoryId").equalTo(categoryId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         pdfArrayList.clear();
                         for (DataSnapshot ds: snapshot.getChildren()){
+                            //
                             ModelPDF model = ds.getValue(ModelPDF.class);
+                            //
                             pdfArrayList.add(model);
 
                             Log.d(TAG, "onDataChange: " +model.getId()+" "+model.getTitle());
 
                         }
                         adapterPdfAdmin = new AdapterPdfAdmin(PdfListAdminActivity.this, pdfArrayList);
-                        binding.rvBook.setAdapter(adapterPdfAdmin);
+                        binding.bookRv.setAdapter(adapterPdfAdmin);
                     }
 
                     @Override

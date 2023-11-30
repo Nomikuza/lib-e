@@ -1,6 +1,5 @@
 package com.codingstuff.loginandsignup.Activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -13,14 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,7 +44,7 @@ import java.util.List;
 
 public class UploadBukuActivity extends AppCompatActivity {
 
-    private EditText kdBukuEdt,nmBukuEdt,descEdt;
+    private EditText nmBukuEdt,descEdt;
     private Button btnBuku, btnBack;
     private ImageButton pdfAttach;
     private TextView categoryTv;
@@ -58,7 +52,7 @@ public class UploadBukuActivity extends AppCompatActivity {
     private ArrayList<String> categoryTitleArrayList, categoryIdArrayList;
     private String imageURL, key;
     private Uri uri, pdfUri;
-    private ImageView uploadImage;
+//    private ImageView uploadImage;
     FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private BookAdapter adapter;
@@ -73,10 +67,9 @@ public class UploadBukuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPdfAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        kdBukuEdt = findViewById(R.id.kdBukuEdt);
         nmBukuEdt = findViewById(R.id.nmBukuEdt);
         descEdt = findViewById(R.id.DescET);
-        uploadImage = findViewById(R.id.uploadImage);
+//        uploadImage = findViewById(R.id.uploadImage);
         btnBuku = findViewById(R.id.addbookET);
         categoryTv = findViewById(R.id.categoryTv);
         pdfAttach = findViewById(R.id.pdfAttach);
@@ -86,30 +79,8 @@ public class UploadBukuActivity extends AppCompatActivity {
         //autosetKdBuku();
         loadPdfCategories();
 
-        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK){
-                            Intent data = result.getData();
-                            uri = data.getData();
-                            uploadImage.setImageURI(uri);
-                        } else {
-                            Toast.makeText(UploadBukuActivity.this, "Tidak ada gambar yang terpilih", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-        );
 
-        uploadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent photoPicker = new Intent(Intent.ACTION_GET_CONTENT);
-                photoPicker.setType("image/*");
-                activityResultLauncher.launch(photoPicker);
-            }
-        });
+
 
         binding.pdfAttach.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,7 +160,6 @@ public class UploadBukuActivity extends AppCompatActivity {
 
     private String title= "", description= "", category= "";
     private void validateData(){
-        String kdbuku = kdBukuEdt.getText().toString();
         String nmbuku = nmBukuEdt.getText().toString();
         String desc = descEdt.getText().toString();
         title = binding.nmBukuEdt.getText().toString().trim();

@@ -70,7 +70,7 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
         String formattedDate = MyApplication.formatTimestamp(timestamp);
 
         holder.titleTv.setText(title);
-        holder.descriptionTv.setText(description);
+//        holder.descriptionTv.setText(description);
         holder.dateTv.setText(formattedDate);
 //        holder.categoryTv.setText(categoryId);
 
@@ -153,7 +153,7 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
 
         PDFView pdfView;
         ProgressBar progressBar;
-        TextView titleTv, descriptionTv, categoryTv, sizeTv, dateTv;
+        TextView titleTv, categoryTv, sizeTv, dateTv;
         ImageView dataImage, imgFav, moreBtn;
         RatingBar ratingBar;
 
@@ -162,11 +162,11 @@ public class AdapterPdfAdmin extends RecyclerView.Adapter<AdapterPdfAdmin.Holder
             pdfView = binding.pdfView;
             progressBar = binding.progressBar;
             titleTv = binding.itemBookTitle;
-            descriptionTv = binding.itemBookStatus;
+//            descriptionTv = binding.itemBookStatus;
             moreBtn = binding.container0;
             categoryTv = binding.itemPjmCategory;
             dateTv = binding.itemPjmTglPengembalian;
-            sizeTv = binding.itemBookSize;
+            sizeTv = binding.itemBookStatus;
         }
     }
 }

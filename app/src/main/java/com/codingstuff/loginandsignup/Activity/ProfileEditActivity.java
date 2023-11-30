@@ -3,6 +3,7 @@ package com.codingstuff.loginandsignup.Activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -264,6 +265,19 @@ public class ProfileEditActivity extends AppCompatActivity {
             }
     );
 
+    public static boolean isValidContextForGlide(final Context context) {
+        if (context == null) {
+            return false;
+        }
+        if (context instanceof Activity) {
+            final Activity activity = (Activity) context;
+            if (activity.isDestroyed() || activity.isFinishing()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void loadUserInfo() {
         Log.d(TAG, "loadUserInfo: Loading user info of user "+firebaseAuth.getUid());
 
@@ -285,12 +299,14 @@ public class ProfileEditActivity extends AppCompatActivity {
 
                         //
                         binding.nameEt.setText(name);
-
-                        //
-                        Glide.with(ProfileEditActivity.this)
-                                .load(profileImage)
-                                .placeholder(R.drawable.profile)
-                                .into(binding.profileTv);
+                        final Context  context = getApplication().getApplicationContext();
+                        if (isValidContextForGlide(context)) {
+                            // Load image via Glide lib using context
+                            Glide.with(context)
+                                    .load(profileImage)
+                                    .placeholder(R.drawable.profile)
+                                    .into(binding.profileTv);
+                        }
                     }
 
                     @Override
